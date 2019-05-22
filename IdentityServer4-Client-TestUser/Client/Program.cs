@@ -17,9 +17,9 @@ namespace Client
             var requestWithClientCredetials = Task.Run(RequestWithClientCredentialsWithPolicy).Result;
             var requestWithResourceOwnerPassword = Task.Run(RequestWithResourceOwnerPasswordWithPolicy).Result;
 
-            Console.WriteLine($"{nameof(requestWithoutPolicyResponse)} : {requestWithoutPolicyResponse}");
-            Console.WriteLine($"{nameof(requestWithClientCredetials)} : {requestWithClientCredetials}");
-            Console.WriteLine($"{nameof(requestWithResourceOwnerPassword)} : {requestWithResourceOwnerPassword}");
+            Console.WriteLine($"1. {nameof(requestWithoutPolicyResponse)} : {requestWithoutPolicyResponse}");
+            Console.WriteLine($"2. {nameof(requestWithClientCredetials)} : {requestWithClientCredetials}");
+            Console.WriteLine($"3. {nameof(requestWithResourceOwnerPassword)} : {requestWithResourceOwnerPassword}");
 
             Console.ReadLine();
         }
@@ -38,7 +38,7 @@ namespace Client
                     return accessToken.Error;
                 }
 
-                Console.WriteLine(accessToken.Json);
+                Console.WriteLine($"1. {accessToken.Json}");
 
                 return accessToken.AccessToken;
             }
@@ -76,7 +76,8 @@ namespace Client
                     return accessToken.Error;
                 }
 
-                Console.WriteLine(accessToken.Json);
+                Console.WriteLine($"2. {accessToken.Json}");
+
 
                 return accessToken.AccessToken;
             }
@@ -106,8 +107,8 @@ namespace Client
             {
                 var discoveryResponse = await DiscoveryClient.GetAsync("http://localhost:5000");
                 // request token
-                var tokenClient = new TokenClient(discoveryResponse.TokenEndpoint, "ro.client1", "123654");
-                var accessToken = await tokenClient.RequestResourceOwnerPasswordAsync("mosalla", "password", "Api1");
+                var tokenClient = new TokenClient(discoveryResponse.TokenEndpoint, "ro.client1", "123456");
+                var accessToken = await tokenClient.RequestResourceOwnerPasswordAsync("mo", "password", "Api1");
 
                 if (accessToken.IsError)
                 {

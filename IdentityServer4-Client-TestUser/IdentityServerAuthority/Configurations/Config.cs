@@ -27,7 +27,7 @@ namespace IdentityServerAuthority.Configurations
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
 
                     // secret for authentication
-                    ClientSecrets =
+                    ClientSecrets = new List<Secret>
                     {
                         new Secret("123654".Sha256())
                     },
@@ -45,10 +45,9 @@ namespace IdentityServerAuthority.Configurations
                 {
                     ClientId = "ro.client1",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-
-                    ClientSecrets =
+                    ClientSecrets = new List<Secret>
                     {
-                        new Secret("123654".Sha256())
+                        new Secret("123456".Sha256())
                     },
                     AllowedScopes = {"Api1"}
                 }
@@ -62,11 +61,11 @@ namespace IdentityServerAuthority.Configurations
                 new TestUser
                 {
                     SubjectId = "1",
-                    Username = "mosalla",
+                    Username = "mo",
                     Password = "password",
                     Claims = new[]
                     {
-                        new Claim("Employee", "Mosalla"),
+                        new Claim("Employee", "mo"),
                         new Claim("website", "http://hamidmosalla.com")
                     }
                 },
